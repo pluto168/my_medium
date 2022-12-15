@@ -15,11 +15,16 @@ class StoriesController < ApplicationController
   
   def create
     @story = current_user.stories.new(story_params)
+    @story.status = 'published' if params[:publish]      #發布文章按鈕:publish,status狀態變'published'
 
     if @story.save
-      redirect_to stories_path, notice: '新增成功'
+      if params[:publish]
+        redirect_to stories_path, notice: '已成功發布'
+      else
+        redirect_to edit_story_path(@story), notice: '已儲存'
+      end
     else
-      render :new       
+      render :new   
     end
   end
 
@@ -36,7 +41,7 @@ class StoriesController < ApplicationController
   end
 
   def destroy
-    @story.destroy       
+    @story.destroy       #複寫到model
     redirect_to stories_path, notice: '已刪除'
   end
 
