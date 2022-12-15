@@ -1,6 +1,13 @@
 class StoriesController < ApplicationController
   before_action :authenticate_user!
-  
+  before_action :find_story, only: [:edit, :update, :show, :destroy]
+
+
+  def index
+    @stories = current_user.stories.order(created_at: :desc)           #撈自己的所有文章
+    # @stories = current_user.stories.where(deleted_at: nil)
+  end
+
   def new
     # @story = Story.new     #同下
     @story = current_user.stories.new             #在model裡加入hasmany後可以用此寫法
@@ -16,7 +23,29 @@ class StoriesController < ApplicationController
     end
   end
 
+  def edit 
+    
+  end
+
+  def update
+    if @story.update(story_params)
+      redirect_to stories_path, notice: '更新成功'
+    else
+      render :edit
+    end
+  end
+
+  def destroy
+    @story.destroy       
+    redirect_to stories_path, notice: '已刪除'
+  end
+
+
   private
+  def find_story
+    @story = current_user.stories.find(params[:id])
+  end
+
   def story_params
     params.require(:story).permit(:title, :content)
   end
