@@ -4,7 +4,7 @@ class StoriesController < ApplicationController
 
 
   def index
-    @stories = current_user.stories.order(created_at: :desc)           #撈自己的所有文章
+    @stories = current_user.stories.order(created_at: :desc)           #撈自己current_user的所有文章stories
     # @stories = current_user.stories.where(deleted_at: nil)
   end
 
@@ -57,7 +57,8 @@ class StoriesController < ApplicationController
 
   private
   def find_story
-    @story = current_user.stories.find(params[:id])
+    @story = current_user.stories.friendly.find(params[:id])     #加入friendly_id
+
   end
 
   def story_params

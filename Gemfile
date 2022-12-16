@@ -39,6 +39,8 @@ gem 'bootsnap', '>= 1.1.0', require: false
 
 gem 'devise', '~> 4.8', '>= 4.8.1'
 gem 'aasm', '~> 5.4'
+gem 'friendly_id', '~> 5.5'
+gem 'babosa', '~> 2.0'
 
 
 group :development, :test do

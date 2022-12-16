@@ -49,6 +49,7 @@ GEM
     archive-zip (0.12.0)
       io-like (~> 0.3.0)
     arel (9.0.0)
+    babosa (2.0.0)
     bcrypt (3.1.18)
     bindex (0.8.1)
     bootsnap (1.15.0)
@@ -79,6 +80,8 @@ GEM
     erubi (1.11.0)
     execjs (2.8.1)
     ffi (1.15.5)
+    friendly_id (5.5.0)
+      activerecord (>= 4.0.0)
     globalid (1.0.0)
       activesupport (>= 5.0)
     i18n (1.12.0)
@@ -213,11 +216,13 @@ PLATFORMS
 
 DEPENDENCIES
   aasm (~> 5.4)
+  babosa (~> 2.0)
   bootsnap (>= 1.1.0)
   byebug
   capybara (>= 2.15)
   chromedriver-helper
   devise (~> 4.8, >= 4.8.1)
+  friendly_id (~> 5.5)
   jbuilder (~> 2.5)
   listen (>= 3.0.5, < 3.2)
   pg (>= 0.18, < 2.0)
