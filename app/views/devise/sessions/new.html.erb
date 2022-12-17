@@ -1,14 +1,22 @@
-<h2>Log in</h2>
+<h2 class="title">Log in登入</h2>
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+  <%= render "devise/shared/error_messages", resource: resource %>
+
+  <div class="field">
+    <%= f.label :login,'使用者帳號' %><br />
+    <%= f.text_field :login,autofocus: true,class: 'input is-medium' %>
+    <p class="help is-success">範例:@使用者帳號</p>
+  </div>
+
   <div class="field">
     <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email",class: 'input is-medium' %>
   </div>
 
   <div class="field">
     <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
+    <%= f.password_field :password, autocomplete: "current-password",class: 'input is-medium' %>
   </div>
 
   <% if devise_mapping.rememberable? %>
@@ -19,8 +27,9 @@
   <% end %>
 
   <div class="actions">
-    <%= f.submit "Log in" %>
+    <%= f.submit "Log in",class: 'button is-primary' %>
   </div>
 <% end %>
+<hr>
 
 <%= render "devise/shared/links" %>
