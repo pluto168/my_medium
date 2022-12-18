@@ -10,6 +10,16 @@
   </div>
 
   <div class="field">
+    <%= f.label :avatar,'大頭照' %><br />
+    <div class="control">
+      <%= f.file_field :avatar,class: 'file has-name is-boxed' %>
+    </div>
+      <%#= image_tag current_user.avatar.variant(resize: '250  X 250') if current_user.avatar.attached?  %>
+      <%= avatar(current_user) %>        <%# avatar的users_helper %>
+  </div>
+    
+
+  <div class="field">
     <%= f.label :intro, '個人簡介' %><br />
     <%= f.text_area :intro,class: 'textarea is-medium',rows: 5 %>
   </div>

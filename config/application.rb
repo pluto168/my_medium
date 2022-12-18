@@ -18,3 +18,6 @@ module MyMedium
     # the framework and any gems in your application.
   end
 end
+
+# Use Vips for processing variants.
+config.active_storage.variant_processor = :vips
