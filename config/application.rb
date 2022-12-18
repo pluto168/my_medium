@@ -20,4 +20,4 @@ module MyMedium
 end
 
 # Use Vips for processing variants.
-config.active_storage.variant_processor = :vips
+# config.active_storage.variant_processor = :vips
