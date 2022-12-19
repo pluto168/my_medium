@@ -10,6 +10,9 @@ class Story < ApplicationRecord
   default_scope { where(deleted_at: nil)}        
   # Ex:- scope :active, -> {where(:active => true)}
 
+  #scope published story ,在page#index中只撈出已經發布的文章,AASM可以省掉scope
+  #scope :published_stories, -> {where(status: 'published')}
+
   #軟刪除
   def destroy
     update(deleted_at: Time.now)
