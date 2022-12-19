@@ -1,18 +1,23 @@
 class Story < ApplicationRecord
 
+  #relationships
   belongs_to :user
   
+  #驗證title不能空
   validates :title, presence: true
 
+  #scope,軟刪除
   default_scope { where(deleted_at: nil)}        
   # Ex:- scope :active, -> {where(:active => true)}
 
+  #軟刪除
   def destroy
     update(deleted_at: Time.now)
   end
 
-  include AASM         #狀態機
-  aasm(column: 'status',no_direct_assignment: true) do         #t.string "status", default:"draft"
+  #狀態機
+  include AASM    #t.string "status", default:"draft",#no_direct_assignment是不可直接修改
+  aasm(column: 'status',no_direct_assignment: true) do     
     state :draft, initial: true
     state :published
 
@@ -27,10 +32,11 @@ class Story < ApplicationRecord
     end
   end
 
+  #網址產生亂數
   extend FriendlyId
   friendly_id :slug_candidate, use: :slugged
 
-  #babosa
+  #babosa顯示中文,搭配FriendlyId
   def normalize_friendly_id(input)
     "#{input.to_s.to_slug.normalize(transliterations: :russian).to_s}-#{SecureRandom.hex[0, 12]}"
   end
@@ -41,4 +47,8 @@ class Story < ApplicationRecord
       :title
     ]
   end
+
+  #上傳圖片
+  has_one_attached :cover_image
+
 end

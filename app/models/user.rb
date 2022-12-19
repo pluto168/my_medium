@@ -6,7 +6,7 @@ class User < ApplicationRecord
 
   has_many :stories
 
-  #usersname login
+  #usersname login使用者帳號登入
   validates_format_of :username, with: /^[a-zA-Z0-9_\.]*$/, :multiline => true
   validates :username, :presence => true, :uniqueness => { :case_sensitive => false }
   # validates :username, presence: true, uniqueness: true

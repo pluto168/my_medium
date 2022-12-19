@@ -5,10 +5,17 @@
 <% end %>
 
 <%= form_for(story) do |form| %>
- <div class="field">
+  <div class="field">
+    <%= image_tag story.cover_image.variant(resize: '1000 X 800'),class: 'cover_image' if story.cover_image.attached? %>
+    <%= form.label :cover_image, '封面圖' %>
+    <%= form.file_field :cover_image %>
+  </div>
+
+  <div class="field">
     <%= form.label :title, '標題' %>
     <%= form.text_field :title,class: 'input is-primary is-medium' %>
   </div>
+
   <div class="field">
     <%= form.label :content, '內文' %>
     <%= form.text_area :content,rows: 10,class: 'textarea is-primary is-medium' %>
