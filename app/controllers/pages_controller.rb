@@ -5,9 +5,14 @@ class PagesController < ApplicationController
   end
 
   def show
+    # @story = Story.published.friendly.find(params[:id]) 
+    # impressionist(@story)
   end
 
   def user
   end
+
+  def demo
+  end 
   
 end
