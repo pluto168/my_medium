@@ -1,4 +1,5 @@
 class PagesController < ApplicationController
+  before_action :find_story, only: [:show]
 
   def index
     #@stories = Story.order(created_at: :desc).includes(:user)     #加上includes解決N+1
@@ -14,8 +15,10 @@ class PagesController < ApplicationController
   end
 
   def show
-    # @story = Story.published.friendly.find(params[:id]) 
+    # @story = Story.published.friendly.find(params[:story_id]) 
     # impressionist(@story)
+
+    # @story = Story.friendly.find(params[:story_id])  找文章find_story
   end
 
   def user
@@ -23,5 +26,10 @@ class PagesController < ApplicationController
 
   def demo
   end 
+
+  private
+  def find_story
+    @story = Story.friendly.find(params[:story_id])
+  end
   
 end
