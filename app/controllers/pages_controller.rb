@@ -8,7 +8,9 @@ class PagesController < ApplicationController
     #@stories = Story.published_stories.order(created_at: :desc).includes(:user) 
 
     #AASM狀態機可以只用published查詢,可省掉scope,ex:Story.published.count
-    @stories = Story.published.order(created_at: :desc).includes(:user)
+    #with_attached_cover_image 解決n+1 railsapi
+    # @stories = Story.published.with_attached_cover_image.order(created_at: :desc).includes(:user)
+    @stories = Story.published_stories     #scop-> story.rb
   end
 
   def show

@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 
   resources :stories
 
-
+ 
   #/@user/article-123
   get '@:username/:story_id', to: 'pages#show',as: 'story_page'
   #/@user/

@@ -12,6 +12,8 @@ class Story < ApplicationRecord
 
   #scope published story ,在page#index中只撈出已經發布的文章,AASM可以省掉scope
   #scope :published_stories, -> {where(status: 'published')}
+  
+  scope :published_stories, -> {published.with_attached_cover_image.order(created_at: :desc).includes(:user)}
 
   #軟刪除
   def destroy
