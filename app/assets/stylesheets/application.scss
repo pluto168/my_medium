@@ -11,15 +11,7 @@
  * It is generally better to create a new file per style scope.
  *
  *= require_tree .
- *= require bulma/bulma.css
- *= require stories
  *= require_self
  */
  
 
-.navbar-link {
-  .user-avatar {
-    border-radius: 50%;
-    margin-right: 10px;
-  }
-}
