@@ -51,7 +51,7 @@ class StoriesController < ApplicationController
   end
 
   def destroy
-    @story.destroy       #複寫到model
+    @story.destroy       #複寫到model,story.rb
     redirect_to stories_path, notice: '已刪除'
   end
 

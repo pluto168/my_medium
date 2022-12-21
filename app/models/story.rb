@@ -6,19 +6,22 @@ class Story < ApplicationRecord
   #驗證title不能空
   validates :title, presence: true
 
-  #scope,軟刪除
-  default_scope { where(deleted_at: nil)}        
-  # Ex:- scope :active, -> {where(:active => true)}
+  #scope區:
+  #scope,軟刪除,有paranoid就可以關閉
+  #default_scope { where(deleted_at: nil)}  Ex:- scope :active, -> {where(:active => true)}
 
   #scope published story ,在page#index中只撈出已經發布的文章,AASM可以省掉scope
   #scope :published_stories, -> {where(status: 'published')}
   
   scope :published_stories, -> {published.with_attached_cover_image.order(created_at: :desc).includes(:user)}
 
-  #軟刪除
-  def destroy
-    update(deleted_at: Time.now)
-  end
+  #軟刪除,有paranoid就可以關閉
+  #def destroy
+  #  update(deleted_at: Time.now)
+  #end
+
+  #paranoid gem的軟刪除,之前已經建立deleted_at
+  acts_as_paranoid
 
   #狀態機
   include AASM    #t.string "status", default:"draft",#no_direct_assignment是不可直接修改

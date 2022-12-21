@@ -8,6 +8,8 @@ default: &default
   cache_path: tmp/cache/webpacker
   webpack_compile_output: true
 
+  resolved_paths: ['app/frontend/images', 'app/assets/images']
+
   # Additional paths webpack should lookup modules
   # ['app/assets', 'engine/foo/app/assets']
   additional_paths: []
