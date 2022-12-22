@@ -1,0 +1,12 @@
+
+<section class="comment-editor">
+  <% if user_signed_in? %>
+    <form action="" method="post">
+      <textarea name="" id="" rows="8" cols="40" class="textarea is-small"></textarea>
+      <button type="submit" class="button is-primary is-fullwidth">送出</button>
+    </form>
+  <% else %>
+    <%= link_to "請先登入", new_user_session_path, class: 'button is-success' %>
+    <%= link_to "會員註冊", new_user_registration_path, class: 'button is-info' %>
+  <% end %>
+</section>
