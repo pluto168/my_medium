@@ -19,6 +19,9 @@ class PagesController < ApplicationController
     # impressionist(@story)
 
     # @story = Story.friendly.find(params[:story_id])  找文章find_story
+
+    @comment = @story.comments.new
+    @comments = @story.comments.order(id: :desc)      #撈出所有留言,反向排序
   end
 
   def user
