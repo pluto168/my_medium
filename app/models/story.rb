@@ -2,6 +2,7 @@ class Story < ApplicationRecord
 
   #relationships
   belongs_to :user
+  has_many :comments       #一個users有許多留言
   
   #驗證title不能空
   validates :title, presence: true

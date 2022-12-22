@@ -4,7 +4,9 @@ Rails.application.routes.draw do
     #sessions: 'users/sessions'
   }
 
-  resources :stories
+  resources :stories do 
+    resources :comments, only: [:create]
+  end
 
  
   #/@user/article-123
