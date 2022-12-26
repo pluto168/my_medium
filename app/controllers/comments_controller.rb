@@ -6,9 +6,8 @@ class CommentsController < ApplicationController
     @comment = @story.comments.new(comment_params)
     @comment.user = current_user
 
-    if @comment.save
-      render js:  "alert('ok')"
-    else
+    #unlss只有發生error才顯示render
+    unless @comment.save
       render js: "alert('error')"
     end
   end

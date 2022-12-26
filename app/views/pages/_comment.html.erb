@@ -3,5 +3,6 @@
     <%= image_tag comment.user.avatar.variant(resize:'50x50') if comment.user.avatar.attached? %>
     <span class="username"><%= comment.user.username %></span>
   </span>
+  <%# show裡面的collection: @comments會自動跑回圈 %>
   <%= simple_format(comment.content) %>
 </article>

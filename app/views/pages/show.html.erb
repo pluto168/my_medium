@@ -21,11 +21,11 @@
     <section class="comments">
       <h2>留言</h2>
 
-      <%# @comment,是pages_controller裡面建立的, comment: 用於_comment_area裡的form_with model: comment %>
+      <%# @comment建立一個new,是pages_controller裡面建立的, comment: 用於_comment_area裡的form_with model: comment %>
       <%= render 'comment_area', story: @story,comment: @comment %>
 
       <section class= "comment-list">
-        <%# partial是局部渲染,collection: @comments會自動跑回圈 %>
+        <%# partial是局部渲染,collection:會自動跑回圈, @comments,撈出所有留言 %>
         <%= render partial: 'comment', collection: @comments %>
       </section>
     </section>

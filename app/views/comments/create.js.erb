@@ -1,0 +1,8 @@
+var list = document.querySelector('section.comment-list')
+var renderContent = "<%= j(render 'pages/comment', comment: @comment) %>"  
+<%# views/pages/_comment.html.erb, j()會把裡面的東西轉成javascript,@comment建立新new留言 %>
+
+list.innerHTML=renderContent + list.innerHTML
+
+<%# 幫表單重置,填寫完送出後,留言框自動清空 %>
+document.querySelector('form.comment_form').reset()
