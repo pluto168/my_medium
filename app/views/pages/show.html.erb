@@ -14,9 +14,9 @@
         <%= simple_format(@story.content) %>       <%# simple_format api可以把文章換行排列 %>
       </p>
       <footer data-controller="story">
-        <%= link_to "#", class: 'clapButton is-size-2 has-text-primary', data: {action: 'story#addClap', slug: @story.slug } do %>
+        <%= link_to "#", class: 'clapButton is-size-2 has-text-primary', data: {action: 'story#addClap', slug: @story.slug}  do %>
           <i class="fa-solid fa-hands-clapping"></i>
-          <span class="clapCount" data-story-target="clapCount" >0</span>
+          <span class="clapCount" data-target = "story.clapCount"><%= @story.clap %></span>
           <%# data-target="story.clapCount 舊式 %>
         <% end %>
       </footer>
