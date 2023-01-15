@@ -14,7 +14,10 @@
         <%= simple_format(@story.content) %>       <%# simple_format api可以把文章換行排列 %>
       </p>
       <footer>
-        拍手 0
+        <%= link_to "#", class: 'clapButton is-size-2 has-text-primary' do %>
+          <i class="fa-solid fa-hands-clapping"></i>
+          <span class="clapCount">0</span>
+        <% end %>
       </footer>
     </article>
     <hr>
