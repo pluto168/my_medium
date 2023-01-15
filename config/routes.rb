@@ -3,8 +3,11 @@ Rails.application.routes.draw do
     #registrations: 'users/registrations',
     #sessions: 'users/sessions'
   }
-
-  resources :stories do 
+  # /stories/:id/clap
+  resources :stories do
+    member do          #clap 需要:id
+      post :clap
+    end 
     resources :comments, only: [:create]
   end
 
