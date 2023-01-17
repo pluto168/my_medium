@@ -2,10 +2,14 @@
   <section class="column is-offset-3 is-6">
     <h1 class="title"><%= @story.title %></h1>
 
-    <span class="profile">
+    <span class="profile" data-controller="user">
       <%= image_tag @story.user.avatar.variant(resize: '50x50'),class: 'avatar' if @story.user.avatar.attached?%>
       <span class="username"><%= @story.user.username %></span>
-      <a href="#" class="follow-button">Follow</a>
+      <%= link_to "Follow", '#',class: 'follow-button',
+                                data: { action: 'user#follow', 
+                                        user: @story.user.id, 
+                                        target: 'user.followButton'
+                                      }%>
     </span>
 
     <article class="content">
@@ -14,7 +18,9 @@
         <%= simple_format(@story.content) %>       <%# simple_format api可以把文章換行排列 %>
       </p>
       <footer data-controller="story">
-        <%= link_to "#", class: 'clapButton is-size-2 has-text-primary', data: {action: 'story#addClap', slug: @story.slug}  do %>
+        <%= link_to "#", class: 'clapButton is-size-2 has-text-primary', 
+                          data: { action: 'story#addClap', 
+                                  slug: @story.slug }  do %>
           <i class="fa-solid fa-hands-clapping"></i>
           <span class="clapCount" data-target = "story.clapCount"><%= @story.clap %></span>
           <%# data-target="story.clapCount 舊式 %>

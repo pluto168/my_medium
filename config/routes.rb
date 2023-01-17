@@ -3,6 +3,14 @@ Rails.application.routes.draw do
     #registrations: 'users/registrations',
     #sessions: 'users/sessions'
   }
+
+  #/users/:id/follow  
+  resources :users, only: [] do     #[]空陣列,不要7條路徑,只要id
+    member do
+      post :follow
+    end
+  end
+
   # /stories/:id/clap
   resources :stories do
     member do          #clap 需要:id

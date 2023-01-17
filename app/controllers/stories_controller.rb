@@ -67,7 +67,6 @@ class StoriesController < ApplicationController
     end
   end
 
-
   private
   def find_story
     @story = current_user.stories.friendly.find(params[:id])     #加入friendly_id
