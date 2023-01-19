@@ -3,12 +3,12 @@ import axios from "axios"
 
 
 export default class extends Controller {
-  static targets = [ "followButton" ]
+  static targets = [ "followButton", "bookmark" ]
 
   follow(event){
     event.preventDefault()
 
-    let user = this.followButtonTarget.dataset.user
+    let user = this.followButtonTarget.dataset.user        //把超連結抓出來
     let button = this.followButtonTarget
     // /users/:id/follow
     axios.post(`/api/users/${user}/follow`)
@@ -22,8 +22,23 @@ export default class extends Controller {
               button.innerHTML = status
           }
         })
-        .catch(function(error){
+        .catch(function(error){       //出錯時可以catch起來
           console.log(error)
         })
+  }
+
+  bookmark(event){
+    event.preventDefault()
+
+    let link = event.currentTarget
+    let slug = link.dataset.slug
+
+    axios.post(`/api/stories/${slug}/bookmark`)
+      .then(function(response){
+        console.log(response.data)
+      })
+      .catch(function(error){           //出錯時可以catch起來
+        console.log(error)
+      })
   }
 }

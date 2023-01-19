@@ -7,17 +7,19 @@ Rails.application.routes.draw do
 
   namespace :api do
     # namespace :v2 do     #隨時可以改版號,路徑變成api/v2/users/:id/follow
-      #/users/:id/follow  
+      #api/users/:id/follow  
       resources :users, only: [] do      #[]空陣列,不要7條路徑,只要id
         member do
           post :follow
         end
       end
 
-      #/stories/:id/clap
+      #api/stories/:id/clap
       resources :stories, only: [] do    #[]空陣列,不要7條路徑,只要id
         member do          #clap 需要:id
           post :clap
+          #/api/stories/:id/bookmark
+          post :bookmark
         end 
       end
     # end

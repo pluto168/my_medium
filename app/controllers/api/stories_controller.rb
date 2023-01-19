@@ -12,4 +12,8 @@ class Api::StoriesController < Api::BaseController
       # render json: {status: 'sign_in_first'}
     # end
   end
+
+  def bookmark
+    render json: {status: 'good'}
+  end
 end
