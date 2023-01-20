@@ -50,4 +50,22 @@ class User < ApplicationRecord
       return 'Followed'
     end
   end
+
+  #bookmarks一個使用者會有很多書籤
+  has_many :bookmarks
+
+  def bookmark?(story)
+    bookmarks.exists?(story: story)
+  end
+
+  def  bookmark!(story)
+    if bookmark?(story)
+      bookmarks.find_by(story: story).destroy     #destroy bookmark把書籤關聯拔掉
+      return "Unbookmarked"
+    else
+      bookmarks.create(story: story)
+      return "Bookmarked"
+    end
+  end
+  
 end

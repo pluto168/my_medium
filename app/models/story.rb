@@ -61,4 +61,6 @@ class Story < ApplicationRecord
   #上傳圖片
   has_one_attached :cover_image
 
+  #bookmarks,想要知道這篇文章有多少人標籤起來
+  has_many :bookmarks
 end
