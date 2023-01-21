@@ -2,10 +2,16 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+@import './editor';
+
+
 form {
   img.cover_image {
     display: block;
   }
+}
+form.story-editor {
+  margin-bottom: 2em;
 }
 
 .story-content {

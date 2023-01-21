@@ -12,6 +12,7 @@
   },
   "devDependencies": {
     "@webpack-cli/serve": "^2.0.1",
+    "froala-editor": "^4.0.17",
     "webpack-dev-server": "^3"
   }
 }
