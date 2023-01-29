@@ -44,7 +44,7 @@ class StoriesController < ApplicationController
         @story.unpublish!
         redirect_to stories_path, notice: '已經下架'
       else
-        redirect_to edit_story_path(@story), notice: '已經儲存草稿'     #儲存草稿
+        redirect_to edit_story_path(@story), notice: '故事已儲存'     #儲存草稿
       end
     else
       render :edit

@@ -7,6 +7,8 @@ Rails.application.routes.draw do
 
   namespace :api do
     # namespace :v2 do     #隨時可以改版號,路徑變成api/v2/users/:id/follow
+      #app/frontend/packs/editor.js
+      post :upload_image, to: 'utils#upload_image'
       #api/users/:id/follow  
       resources :users, only: [] do      #[]空陣列,不要7條路徑,只要id
         member do

@@ -29,7 +29,8 @@
     <article class="content">
       <%= image_tag @story.cover_image.variant(resize: '1000x500'),class:'cover-image' if @story.cover_image.attached?%>
       <p>
-        <%= simple_format(@story.content) %>       <%# simple_format api可以把文章換行排列 %>
+        <%= @story.content.html_safe %>       <%# simple_format api可以把文章換行排列,但無法顯示顏色等資訊 %>
+                                              <%# html_safe:讓他不要去過濾那些資料,直接輸出 %>
       </p>
       <footer data-controller="story">
         <%= link_to "#", class: 'clapButton is-size-2 has-text-primary', 
