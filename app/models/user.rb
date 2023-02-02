@@ -67,5 +67,18 @@ class User < ApplicationRecord
       return "Bookmarked"
     end
   end
+
+  #role 角色設定
+  enum role: {
+    user: 0,
+    vip_user: 1,
+    platinum_user: 2,
+    admin: 3
+  }
+
+  def paid_user?
+    # role == 1 || role == 2   同下
+    vip_user? || platinum_user?
+  end
   
 end

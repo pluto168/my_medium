@@ -27,7 +27,6 @@ Rails.application.routes.draw do
     # end
   end
   
-
   #只留CRUD
   resources :stories do
     # member do          #clap 需要:id 搬到上面api
@@ -36,8 +35,15 @@ Rails.application.routes.draw do
     resources :comments, only: [:create] #只留CRUD
   end
 
+  #會員付費
+  resources :users, only: [] do
+    collection do
+      get :pricing   #/users/pricing
+      get :payment   #/users/payman
+    end
+  end
 
-  #/@user/article-123
+  #/@user/article-123 文章標題
   get '@:username/:story_id', to: 'pages#show',as: 'story_page'
   #/@user/
   get '@:username', to: 'pages#user',as: 'user_page'
