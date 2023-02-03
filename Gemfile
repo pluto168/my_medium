@@ -44,6 +44,8 @@ gem 'friendly_id', '~> 5.5'
 gem 'babosa', '~> 2.0'
 gem 'webpacker', '~> 5.4', '>= 5.4.3'
 gem 'paranoia', '~> 2.6', '>= 2.6.1'
+gem 'figaro', '~> 1.2'
+gem "braintree", "~> 4.9.0"
 
 
 
