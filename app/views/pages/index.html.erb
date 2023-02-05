@@ -101,56 +101,24 @@
         <section class="column">
           <h2 class="title is-4">Popular on Medium</h2>
           <hr>
-
-          <article class="media">
-            <div class="media-left">01</div>
-            <div class="media-content">
-              <h3>Difficult Conversation Lessons From a Psychologist Who’s Been Dealing With People</h3>
-              <footer>
-                <p>Thomas Oppong</p>
-              </footer>
-            </div>
-          </article>
-
-          <article class="media">
-            <div class="media-left">02</div>
-            <div class="media-content">
-              <h3>Difficult Conversation Lessons From a Psychologist Who’s Been Dealing With People</h3>
-              <footer>
-                <p>Thomas Oppong</p>
-              </footer>
-            </div>
-          </article>
-
-          <article class="media">
-            <div class="media-left">03</div>
-            <div class="media-content">
-              <h3>Difficult Conversation Lessons From a Psychologist Who’s Been Dealing With People</h3>
-              <footer>
-                <p>Thomas Oppong</p>
-              </footer>
-            </div>
-          </article>
-
-          <article class="media">
-            <div class="media-left">04</div>
-            <div class="media-content">
-              <h3>Difficult Conversation Lessons From a Psychologist Who’s Been Dealing With People</h3>
-              <footer>
-                <p>Thomas Oppong</p>
-              </footer>
-            </div>
-          </article>
-
-          <article class="media">
-            <div class="media-left">05</div>
-            <div class="media-content">
-              <h3>Difficult Conversation Lessons From a Psychologist Who’s Been Dealing With People</h3>
-              <footer>
-                <p>Thomas Oppong</p>
-              </footer>
-            </div>
-          </article>
+            <% @populars.each do |story| %>
+              <article class="media">
+                <div class="media-content">
+                  <h2 class="title is-4"><%= link_to story.title, story_page_path(story.user.username,story),class: 'has-text-grey-dark'%></h2>
+                  <footer>
+                    <p>
+                    <%= link_to story.user.username, user_page_path(story.user.username),class: 'has-text-grey-dark' %> |
+                    <%= time_ago_in_words(story.updated_at)%>   <%# time_ago_in_words 多久時間前的api %>
+                    </p>
+                  </footer>
+                </div>
+                <% if story.cover_image.attached? %>   <%#如果有圖就秀出來%>
+                  <figure class="media-right">
+                    <%= image_tag story.cover_image.variant(resize: '200x200') %>
+                  </figure>
+                <% end %>
+            </article>
+          <% end %>
         </section>
       </section>
     </div>

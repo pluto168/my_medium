@@ -16,6 +16,7 @@ class Story < ApplicationRecord
   #scope :published_stories, -> {where(status: 'published')}
   
   scope :published_stories, -> {published.with_attached_cover_image.order(created_at: :desc).includes(:user)}
+  scope :popular_stories, -> {published.with_attached_cover_image.order(clap: :desc).includes(:user)}
 
   #軟刪除,有paranoid就可以關閉
   #def destroy
