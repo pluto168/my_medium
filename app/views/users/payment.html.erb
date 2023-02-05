@@ -12,30 +12,36 @@
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean efficitur sit amet massa fringilla egestas. Nullam condimentum luctus turpis.
         </p>
       </div>
+        <%= form_with url: pay_users_path(type: params[:type]), id: 'pay_form', method: 'post', local: true do |form| %>
+
+          <%= form.hidden_field :payment_nonce %>
+          <div id="dropin-container"></div>
+          <%= link_to "重新選擇方案", pricing_users_path,class: 'button is-light' %> 
+          <button id="submit-button" class="button is-danger">付錢去！</button>
+        <% end %>
     </div>
   </article>
 </div>
 
-<div id="dropin-container"></div>
-<button id="submit-button" class="button is-danger">付錢去！</button>
 
+<%# braintree刷卡API %>
 <script src="https://js.braintreegateway.com/web/dropin/1.33.7/js/dropin.min.js"></script>
 
 <script>
   document.addEventListener('DOMContentLoaded', function(event) {
     var button = document.querySelector('#submit-button');
-    // let nonce_field = document.querySelector('input[name="payment_nonce"]')
-    // let form = document.querySelector('#pay_form')
+    let nonce_field = document.querySelector('input[name="payment_nonce"]')
+    let form = document.querySelector('#pay_form')
 
     braintree.dropin.create({
       authorization: '<%= @token %>',
       container: '#dropin-container'
     }, function (createErr, instance) {
-      button.addEventListener('click', function () {
-        // event.preventDefault()
+      button.addEventListener('click', function (event) {              //會跟braintree要一個隨機數回來
+        event.preventDefault()                                         //先擋下預設的行為,不然會在要隨機數時,頁面就直接出去了
         instance.requestPaymentMethod(function (err, payload) {
-          // nonce_field.value = payload.nonce
-          // form.submit()
+          nonce_field.value = payload.nonce                           //拿到payment_nonce後,放回隱藏欄位
+          form.submit()                                               //再送出
         });
       });
     });

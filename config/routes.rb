@@ -40,6 +40,7 @@ Rails.application.routes.draw do
     collection do
       get :pricing   #/users/pricing
       get :payment   #/users/payman
+      post :pay      #/users/pay  負責跟braintree的server溝通,不需要畫面,寫在form_with
     end
   end
 
