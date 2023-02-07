@@ -16,7 +16,10 @@ class Story < ApplicationRecord
   #scope :published_stories, -> {where(status: 'published')}
   
   scope :published_stories, -> {published.with_attached_cover_image.order(created_at: :desc).includes(:user)}
-  scope :popular_stories, -> {published.with_attached_cover_image.order(clap: :desc).includes(:user)}
+  scope :popular_stories, -> {published.with_attached_cover_image.order(clap: :desc).limit(10).includes(:user)}
+  scope :top1_stories, -> {published.with_attached_cover_image.order(clap: :desc).limit(1).includes(:user)}
+  scope :updates_stories, -> {published.with_attached_cover_image.order(updated_at: :desc).limit(3).includes(:user)}
+  scope :creat1_stories, -> {published.with_attached_cover_image.order(created_at: :desc).limit(1).includes(:user)}
 
   #軟刪除,有paranoid就可以關閉
   #def destroy

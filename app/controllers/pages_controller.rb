@@ -12,7 +12,10 @@ class PagesController < ApplicationController
     #with_attached_cover_image 解決n+1 railsapi
     # @stories = Story.published.with_attached_cover_image.order(created_at: :desc).includes(:user)
     @stories = Story.published_stories     #scop-> story.rb
-    @populars = Story.popular_stories
+    @populars = Story.popular_stories      #clap 
+    @updates = Story.updates_stories
+    @top1s = Story.top1_stories
+    @creat1s = Story.creat1_stories
   end
 
   def show
